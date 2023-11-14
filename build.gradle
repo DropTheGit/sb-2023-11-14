@@ -22,10 +22,23 @@ repositories {
 }
 
 dependencies {
+    // 액츄에이터
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // 스프링 웹
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 롬복
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // devtools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 타임리프(뷰)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
