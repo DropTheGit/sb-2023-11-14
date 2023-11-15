@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ArticleController {
-    private List<Article> articles = new ArrayList<>();
+
+    List<Article> articles = new ArrayList<>();
 
     @GetMapping("/article/write")
     String showWrite() {
@@ -19,16 +21,13 @@ public class ArticleController {
 
     @GetMapping("/article/doWrite")
     @ResponseBody
-    RsData doWrite(
-            String title,
-            String body
-    ) {
+    RsData<Article> doWrite(String title, String body) {
         Article article = new Article(articles.size() + 1, title, body);
         articles.add(article);
 
         RsData<Article> rs = new RsData<>(
                 "S-1",
-                "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
+                "%d번 게시물이 등록되었습니다.".formatted(article.getId()),
                 article
         );
 
@@ -46,6 +45,7 @@ public class ArticleController {
     List<Article> getArticles() {
         return articles;
     }
+
 }
 
 @AllArgsConstructor
@@ -55,6 +55,7 @@ class RsData<T> {
     private String msg;
     private T data;
 }
+
 @AllArgsConstructor
 @Getter
 class Article {
